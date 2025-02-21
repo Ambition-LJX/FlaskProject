@@ -1,0 +1,30 @@
+{# 继承父模板 #}
+{% extends 'child1.html' %}
+{# super #}
+{% block head %}
+    {{ super() }} 保留child1中的内容
+    <p>Python 重写child1中的内容</p>
+{% endblock %}
+
+{# include #}
+{% block content %}
+    {% include 'child2_include.html' %} 包括child2_include.html中的内容
+    <p>Flask Content</p>
+{% endblock %}
+
+{# 宏定义:Python函数 #}
+{% macro person(name,age) %}
+    <b>姓名:{{ name }},年龄:{{ age }}</b>
+{% endmacro %}
+
+{% block foot %}
+    {{ person("坤坤",25) }}
+    {# 过滤器 #}
+    <p>{{ name | capitalize }}</p>
+    <p>{{ name | title }}</p>
+    <p>{{ name | upper }}</p>
+    <p>{{ name | lower }}</p>
+    <p>{{ name | first | upper}}</p>
+    <p>{{ name2 | default('kunkun')}}</p> {# 设置默认值 #}
+{% endblock %}
+
